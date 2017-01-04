@@ -21,8 +21,8 @@ public class UrlList {
 
     private void createList() {
         BufferedReader br = null;
-        String baseString = null;
-        String currentLine = null;
+        String baseString;
+        String currentLine;
 
         try {
             br = new BufferedReader(new FileReader(filePath));
