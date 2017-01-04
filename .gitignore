@@ -1,8 +1,16 @@
 .idea
 .DS_Store
 .target/classes
+.target/classes/*
 target/classes/validator/StatusCodeValidatorSingle.class
 target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
 target/test-classes/unit/ValidatorUnitTests.class
 target/test-classes/validator/ValidatorTests.class
+target/classes/validator/UrlList.class
+target/classes/validator/ValidatorTests.class
+src/main/resources/
+target/classes/
+target/generated-sources/
+target/generated-test-sources/
+target/test-classes/
