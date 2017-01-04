@@ -15,17 +15,17 @@ public class StatusCodeValidatorSingle {
 
     public int checkURLStatusCode() throws IOException {
         WebClient webClient = new WebClient();
-        int code = 0;
+        int statusCode;
 
         try {
-            code = webClient.getPage(url).getWebResponse().getStatusCode();
+            statusCode = webClient.getPage(url).getWebResponse().getStatusCode();
         } catch (FailingHttpStatusCodeException e){
-            code = e.getStatusCode();
+            statusCode = e.getStatusCode();
         }
 
         webClient.close();
 
-        return code;
+        return statusCode;
     }
 
 }
