@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 @RunWith(Parameterized.class)
-public class RunValidation {
+public class Validator {
 
     private String urlUnderTest;
 
-    public RunValidation(String urlUnderTest) {
+    public Validator(String urlUnderTest) {
         this.urlUnderTest = urlUnderTest;
     }
 
