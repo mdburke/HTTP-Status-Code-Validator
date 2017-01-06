@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
+/* Parses test data and turns it into an ArrayList for consumption with tests. */
 public class UrlList {
     private List<String> urlList= new ArrayList<>();
     private String filePath;
@@ -19,10 +20,12 @@ public class UrlList {
         this(RunValidator.testDataPath);
     }
 
+    /* Getter */
     public List<String> getUrlList() {
         return urlList;
     }
 
+    /* Reads the passed in csv file and turns it into an ArrayList<String> */
     private void createList() {
         BufferedReader br = null;
         String baseString;

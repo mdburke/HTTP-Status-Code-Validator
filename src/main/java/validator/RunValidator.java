@@ -4,11 +4,15 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.Result;
 
+/* Main method that coordinates all tests */
 public class RunValidator {
+
+    /* Needed to be static so UrlList.createList() could access it without an instance. */
     static String testDataPath;
 
     public static void main (String[] args) {
 
+        /* Parse command line */
         if (args.length == 1) {
             testDataPath = args[0];
         } else {
@@ -16,6 +20,7 @@ public class RunValidator {
             System.exit(0);
         }
 
+        /* Run tests */
         Result result = JUnitCore.runClasses(Validator.class);
 
         /*
@@ -28,6 +33,7 @@ public class RunValidator {
             e.printStackTrace();
         }
 
+        /* Print results */
         System.out.println("Tests finished.");
         System.out.println("Failure Count: " + result.getFailureCount());
         if (result.getFailureCount() > 0) {
