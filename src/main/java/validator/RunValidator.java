@@ -1,5 +1,7 @@
 package validator;
 
+import org.junit.internal.JUnitSystem;
+import org.junit.internal.XmlListener;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.Result;
@@ -21,8 +23,9 @@ public class RunValidator {
         }
 
         /* Run tests */
-        Result result = JUnitCore.runClasses(Validator.class);
-
+        JUnitCore core = new JUnitCore();
+        core.addListener(new XmlListener(System.out));
+        Result result = core.run(Validator.class);
         /*
          *   Avoiding synchronization but still need some time for last test to finish.
          *   Was seeing the final print before the last logger 1 out of 3 or 4 times.
