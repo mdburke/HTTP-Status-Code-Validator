@@ -29,6 +29,16 @@
             <artifactId>selenium-support</artifactId>
             <version>3.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -83,6 +93,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <slf4jVersion>1.7.22</slf4jVersion>
     </properties>
 
 </project>
