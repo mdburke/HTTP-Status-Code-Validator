@@ -17,7 +17,7 @@ public class StatusCodeValidatorSingle {
     }
 
     public int checkURLStatusCode() throws IOException {
-        /* Remove annoying logs */
+        /* Remove annoying logs about html and css */
         LogFactory.getFactory().setAttribute("org.apache.commons.logging.Log",
                 "org.apache.commons.logging.impl.NoOpLog");
         Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(Level.OFF);
