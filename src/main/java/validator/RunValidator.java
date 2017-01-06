@@ -17,7 +17,21 @@ public class RunValidator {
 
         Result result = JUnitCore.runClasses(Validator.class);
 
-        System.out.println("Tests finished");
+        /*
+         *   Avoiding synchronization but still need some time for last test to finish.
+         *   Was seeing the final print before the last logger 1 out of 3 or 4 times.
+        */
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Tests finished.");
+        System.out.println("Failure Count: " + result.getFailureCount());
+        if (result.getFailureCount() > 0) {
+            System.out.println(result.getFailures());
+        }
     }
 }
 

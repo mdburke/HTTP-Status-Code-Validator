@@ -39,13 +39,13 @@ public class Validator {
 
     @Rule public MethodRule watchman = new TestWatchman() {
         public void starting(FrameworkMethod method) {
-            logger.info("Run Test {}...", method.getName());
+            logger.info("Starting Test {}...", urlUnderTest);
         }
         public void succeeded(FrameworkMethod method) {
-            logger.info("Test {} succeeded.", method.getName());
+            logger.info("Test {} succeeded.", urlUnderTest);
         }
         public void failed(Throwable e, FrameworkMethod method) {
-            logger.error("Test {} failed with {}.", method.getName(), e);
+            logger.error("Test {} failed with {}.", urlUnderTest, e);
         }
     };
 
