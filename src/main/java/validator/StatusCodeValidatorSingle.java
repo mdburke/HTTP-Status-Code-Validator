@@ -17,14 +17,14 @@ public class StatusCodeValidatorSingle {
     }
 
     public int checkURLStatusCode() throws IOException {
+        WebClient webClient = new WebClient();
+        int statusCode;
+
         /* Remove annoying logs about html and css */
         LogFactory.getFactory().setAttribute("org.apache.commons.logging.Log",
                 "org.apache.commons.logging.impl.NoOpLog");
         Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(Level.OFF);
         Logger.getLogger("org.apache.commons.httpclient").setLevel(Level.OFF);
-
-        WebClient webClient = new WebClient();
-        int statusCode;
 
         try {
             statusCode = webClient.getPage(url).getWebResponse().getStatusCode();

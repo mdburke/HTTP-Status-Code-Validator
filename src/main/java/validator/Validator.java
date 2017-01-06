@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class Validator {
 
     private String urlUnderTest;
+
     /* Show actual test logs */
     private static final org.slf4j.Logger logger =
             LoggerFactory.getLogger(StatusCodeValidatorSingle.class);
@@ -54,7 +55,7 @@ public class Validator {
         StatusCodeValidatorSingle validator = new StatusCodeValidatorSingle(urlUnderTest);
 
         try {
-            Assert.assertEquals(200, validator.checkURLStatusCode());
+            Assert.assertEquals(urlUnderTest,200, validator.checkURLStatusCode());
         } catch (IOException e) {
             e.printStackTrace();
         }

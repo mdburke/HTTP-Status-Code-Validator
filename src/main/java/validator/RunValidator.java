@@ -1,6 +1,7 @@
 package validator;
 
 import org.junit.runner.JUnitCore;
+import org.junit.runner.notification.Failure;
 import org.junit.runner.Result;
 
 public class RunValidator {
@@ -30,7 +31,9 @@ public class RunValidator {
         System.out.println("Tests finished.");
         System.out.println("Failure Count: " + result.getFailureCount());
         if (result.getFailureCount() > 0) {
-            System.out.println(result.getFailures());
+            for (Failure failure : result.getFailures()) {
+                System.out.println(failure.getMessage());
+            }
         }
     }
 }
