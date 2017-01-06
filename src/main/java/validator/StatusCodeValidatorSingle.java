@@ -4,7 +4,7 @@ import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
 import java.io.IOException;
 import java.util.logging.Level;
-import java.util.logging.Logger
+import java.util.logging.Logger;
 import org.apache.commons.logging.LogFactory;
 
 
@@ -24,16 +24,15 @@ public class StatusCodeValidatorSingle {
         Logger.getLogger("org.apache.commons.httpclient").setLevel(Level.OFF);
 
         WebClient webClient = new WebClient();
-
         int statusCode;
 
         try {
             statusCode = webClient.getPage(url).getWebResponse().getStatusCode();
         } catch (FailingHttpStatusCodeException e){
             statusCode = e.getStatusCode();
+        } finally {
+            webClient.close();
         }
-
-        webClient.close();
 
         return statusCode;
     }
