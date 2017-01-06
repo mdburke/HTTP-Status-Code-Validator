@@ -4,6 +4,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.Rule;
+import org.junit.rules.MethodRule;
+import org.junit.rules.TestWatchman;
+import org.junit.runners.model.FrameworkMethod;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,6 +18,9 @@ import java.util.ArrayList;
 public class Validator {
 
     private String urlUnderTest;
+    /* Show actual test logs */
+    private static final org.slf4j.Logger logger =
+            LoggerFactory.getLogger(StatusCodeValidatorSingle.class);
 
     public Validator(String urlUnderTest) {
         this.urlUnderTest = urlUnderTest;
@@ -28,6 +36,18 @@ public class Validator {
 
         return result;
     }
+
+    @Rule public MethodRule watchman = new TestWatchman() {
+        public void starting(FrameworkMethod method) {
+            logger.info("Run Test {}...", method.getName());
+        }
+        public void succeeded(FrameworkMethod method) {
+            logger.info("Test {} succeeded.", method.getName());
+        }
+        public void failed(Throwable e, FrameworkMethod method) {
+            logger.error("Test {} failed with {}.", method.getName(), e);
+        }
+    };
 
     @Test
     public void testUrl() {

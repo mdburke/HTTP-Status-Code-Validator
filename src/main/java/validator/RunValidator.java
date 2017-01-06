@@ -16,7 +16,8 @@ public class RunValidator {
         }
 
         Result result = JUnitCore.runClasses(Validator.class);
-        System.out.println(result);
+
+        System.out.println("Tests finished");
     }
 }
 
