@@ -15,6 +15,10 @@ public class UrlList {
         createList();
     }
 
+    public UrlList() {
+        this(RunValidator.testDataPath);
+    }
+
     public List<String> getUrlList() {
         return urlList;
     }

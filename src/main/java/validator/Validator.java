@@ -21,7 +21,7 @@ public class Validator {
     @Parameterized.Parameters()
     public static Iterable<Object[]> generateParameters() {
         List<Object[]> result = new ArrayList<>();
-        UrlList urlList = new UrlList("TestUrls.csv");
+        UrlList urlList = new UrlList();
         for (String url : urlList.getUrlList()) {
             result.add(new Object[] { url });
         }

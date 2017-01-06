@@ -4,8 +4,9 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 
 public class RunValidator {
+    static String testDataPath;
+
     public static void main (String[] args) {
-        String testDataPath;
 
         if (args.length == 1) {
             testDataPath = args[0];
