@@ -1,5 +1,8 @@
 package validator;
 
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+
 public class RunValidator {
     public static void main (String[] args) {
         String testDataPath;
@@ -11,7 +14,8 @@ public class RunValidator {
             System.exit(0);
         }
 
-
+        Result result = JUnitCore.runClasses(Validator.class);
+        System.out.println(result);
     }
 }
 
