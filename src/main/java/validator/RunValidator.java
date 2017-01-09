@@ -1,7 +1,5 @@
 package validator;
 
-import org.junit.internal.JUnitSystem;
-import org.junit.internal.XmlListener;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.Result;
@@ -29,7 +27,7 @@ public class RunValidator {
         /* Create log file */
         PrintStream writer;
         try {
-           writer = new PrintStream(new FileOutputStream("logs.xml", true));
+           writer = new PrintStream(new FileOutputStream("logs.xml", false));
         } catch (IOException e) {
             e.printStackTrace();
             writer = null;

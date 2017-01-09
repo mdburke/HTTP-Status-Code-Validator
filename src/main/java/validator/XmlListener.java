@@ -1,7 +1,6 @@
-package org.junit.internal;
+package validator;
 
 import java.io.PrintStream;
-import java.text.NumberFormat;
 import java.util.List;
 
 import org.junit.runner.Description;
@@ -12,8 +11,6 @@ import org.junit.runner.notification.RunListener;
 public class XmlListener extends RunListener {
 
     private final PrintStream writer;
-
-    public XmlListener(JUnitSystem system) { this(system.out()); }
 
     public XmlListener(PrintStream writer) {
         this.writer = writer;
@@ -47,7 +44,7 @@ public class XmlListener extends RunListener {
 
     @Override
     public void testIgnored(Description description) {
-        writer.append('I');
+        getWriter().println("<skipped />");
     }
 
     /*
