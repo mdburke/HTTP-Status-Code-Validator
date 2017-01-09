@@ -36,7 +36,7 @@ public class ValidatorUnitTests {
 
     @Test
     public void testCreateList() {
-        UrlList urlList = new UrlList("TestUrls.csv");
+        UrlList urlList = new UrlList("UnitTestUrls.csv");
         List<String> correctList = new ArrayList<>();
         String baseString = "http://ahs.uic.i.pixotech.com";
 
