@@ -13,28 +13,36 @@ public class XmlListener extends RunListener {
 
     private final PrintStream writer;
 
-    public XmlListener(JUnitSystem system) {
-        this(system.out());
-    }
+    public XmlListener(JUnitSystem system) { this(system.out()); }
 
     public XmlListener(PrintStream writer) {
         this.writer = writer;
     }
 
     @Override
+    public void testRunStarted(Description description) {
+        printHeader();
+    }
+
+    @Override
     public void testRunFinished(Result result) {
-        printHeader(result);
-        printFailures(result);
-        printFooter(result);
+        printFooter();
     }
 
     @Override
     public void testStarted(Description description) {
+        getWriter().println("<testcase name=\"" + description.toString() + "\">");
+    }
+
+    @Override
+    public void testFinished(Description description) {
+        getWriter().println("</testcase>");
     }
 
     @Override
     public void testFailure(Failure failure) {
-        writer.append('E');
+        getWriter().println("<failure message=\"" + failure.getMessage() +
+                            "\"> Assertion Failed </failure>");
     }
 
     @Override
@@ -50,10 +58,10 @@ public class XmlListener extends RunListener {
         return writer;
     }
 
-    protected void printHeader(Result result) {
+    protected void printHeader() {
         getWriter().println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         getWriter().println("<testsuites>");
-        writer.append("<testsuite name=");
+        getWriter().println("<testsuite>");
     }
 
     protected void printFailures(Result result) {
@@ -77,16 +85,8 @@ public class XmlListener extends RunListener {
         getWriter().print(each.getTrace());
     }
 
-    protected void printFooter(Result result) {
+    protected void printFooter() {
         getWriter().println("</testsuite>");
         getWriter().println("</testsuites>");
-    }
-
-    /**
-     * Returns the formatted string of the elapsed time. Duplicated from
-     * BaseTestRunner. Fix it.
-     */
-    protected String elapsedTimeAsString(long runTime) {
-        return NumberFormat.getInstance().format((double) runTime / 1000);
     }
 }
