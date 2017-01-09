@@ -23,14 +23,13 @@ public class XmlListener extends RunListener {
 
     @Override
     public void testRunFinished(Result result) {
-        printHeader(result.getRunTime());
+        printHeader(result);
         printFailures(result);
         printFooter(result);
     }
 
     @Override
     public void testStarted(Description description) {
-        writer.append("<testsuite name=" + description);
     }
 
     @Override
@@ -51,9 +50,10 @@ public class XmlListener extends RunListener {
         return writer;
     }
 
-    protected void printHeader(long runTime) {
+    protected void printHeader(Result result) {
         getWriter().println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         getWriter().println("<testsuites>");
+        writer.append("<testsuite name=");
     }
 
     protected void printFailures(Result result) {
@@ -78,6 +78,7 @@ public class XmlListener extends RunListener {
     }
 
     protected void printFooter(Result result) {
+        getWriter().println("</testsuite>");
         getWriter().println("</testsuites>");
     }
 

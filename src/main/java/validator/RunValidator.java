@@ -6,6 +6,10 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.Result;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+
 /* Main method that coordinates all tests */
 public class RunValidator {
 
@@ -22,9 +26,18 @@ public class RunValidator {
             System.exit(0);
         }
 
+        /* Create log file */
+        PrintStream writer;
+        try {
+           writer = new PrintStream(new FileOutputStream("logs.xml", true));
+        } catch (IOException e) {
+            e.printStackTrace();
+            writer = null;
+        }
+
         /* Run tests */
         JUnitCore core = new JUnitCore();
-        core.addListener(new XmlListener(System.out));
+        core.addListener(new XmlListener(writer));
         Result result = core.run(Validator.class);
         /*
          *   Avoiding synchronization but still need some time for last test to finish.
