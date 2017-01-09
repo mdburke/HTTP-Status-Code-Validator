@@ -57,6 +57,12 @@ public class RunValidator {
                 System.out.println(failure.getMessage());
             }
         }
+
+        try {
+            writer.close();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 }
 
