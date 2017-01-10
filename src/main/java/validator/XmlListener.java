@@ -8,6 +8,9 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
+/**
+ * This listener runs with the tests and creates the necessary xml data for consumption by Junit.
+ */
 public class XmlListener extends RunListener {
 
     private final PrintStream writer;
