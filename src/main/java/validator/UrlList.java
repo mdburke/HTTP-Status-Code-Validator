@@ -36,7 +36,9 @@ public class UrlList {
 
             if ((baseString = br.readLine()) != null) {
                 while ((currentLine = br.readLine()) != null) {
-                    urlList.add(baseString + currentLine);
+                    if (!currentLine.startsWith("$")) {
+                        urlList.add(baseString + currentLine);
+                    }
                 }
             }
         } catch (Exception e) {

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Class that runs all of the iterations. This class is using junit @RunWith(Paramterized) to parameterize the tests
+ * Class that runs all of the iterations. This class is using junit @RunWith(Parameterized) to parameterize the tests
  * at runtime. This way we can use a csv of urls from any place passed in as a command line argument and the tests will
  * be created at runtime.
  */
