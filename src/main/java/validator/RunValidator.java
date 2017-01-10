@@ -13,21 +13,32 @@ public class RunValidator {
 
     /* Needed to be static so UrlList.createList() could access it without an instance. */
     static String testDataPath;
+    static String logPath;
 
     public static void main (String[] args) {
 
         /* Parse command line */
         if (args.length == 1) {
+            if (args[0].equals("-h") || args[0].equals("--help")) {
+                System.out.println("Please enter the path for the test data and optionally the path where the tests" +
+                        "should output the logs.");
+                System.exit(0);
+            } else {
+                testDataPath = args[0];
+                logPath = "logs.xml";
+            }
+        } else if (args.length == 2) {
             testDataPath = args[0];
+            logPath = args[1];
         } else {
-            System.out.println("Please enter an argument (only one) for the test path data.");
+            System.out.println("Invalid number of arguments. 1 or 2 only.");
             System.exit(0);
         }
 
         /* Create log file */
         PrintStream writer;
         try {
-           writer = new PrintStream(new FileOutputStream("logs.xml", false));
+           writer = new PrintStream(new FileOutputStream(logPath, false));
         } catch (IOException e) {
             e.printStackTrace();
             writer = null;
