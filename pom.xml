@@ -83,7 +83,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>/Users/mike/Developer/ProjectRepos/StatusCodeValidator/target/lib</outputDirectory>
+                            <outputDirectory>target/lib</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
