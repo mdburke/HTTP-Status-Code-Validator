@@ -7,6 +7,8 @@ import org.junit.runner.Result;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /* Main method that coordinates all tests */
 public class RunValidator {
@@ -33,6 +35,13 @@ public class RunValidator {
         } else {
             System.out.println("Invalid number of arguments. 1 or 2 only.");
             System.exit(0);
+        }
+
+        /* Delete previous log file */
+        try {
+            Files.deleteIfExists(Paths.get(logPath));
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
         /* Create log file */

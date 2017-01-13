@@ -64,22 +64,6 @@ public class XmlListener extends RunListener {
         getWriter().println("<testsuite>");
     }
 
-    protected void printFailures(Result result) {
-        List<Failure> failures = result.getFailures();
-        if (failures.isEmpty()) {
-            return;
-        }
-        if (failures.size() == 1) {
-            getWriter().println("There was " + failures.size() + " failure:");
-        } else {
-            getWriter().println("There were " + failures.size() + " failures:");
-        }
-        int i = 1;
-        for (Failure each : failures) {
-            printFailure(each, "" + i++);
-        }
-    }
-
     protected void printFailure(Failure each, String prefix) {
         getWriter().println(prefix + ") " + each.getTestHeader());
         getWriter().print(each.getTrace());
