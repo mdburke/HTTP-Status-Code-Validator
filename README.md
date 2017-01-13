@@ -16,7 +16,7 @@ http://ahs.uic.i.pixotech.com
 /asdfsa
 ```
 
-The first line needs to be the base url and each subsequent line should have a single extension that could be combined with the base to form a test url. To skip a test, prepend the line with a '$' character. This way, we can easily update the tests as the product is updated with new paths.
+The first line needs to be the base url and each subsequent line should have a single extension that could be combined with the base to form a test url. To skip a test, prepend the line with a '#' character. This way, we can easily update the tests as the product is updated with new paths.
 
 The log file is output as XML in a format intended to be read by the junit plug-in in Jenkins.
 

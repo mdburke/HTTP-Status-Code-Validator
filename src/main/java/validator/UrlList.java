@@ -36,7 +36,7 @@ public class UrlList {
 
             if ((baseString = br.readLine()) != null) {
                 while ((currentLine = br.readLine()) != null) {
-                    if (!currentLine.startsWith("$")) {
+                    if (!currentLine.startsWith("#")) {
                         urlList.add(baseString + currentLine);
                     }
                 }

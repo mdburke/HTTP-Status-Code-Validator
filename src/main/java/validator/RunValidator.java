@@ -48,6 +48,7 @@ public class RunValidator {
         JUnitCore core = new JUnitCore();
         core.addListener(new XmlListener(writer));
         Result result = core.run(Validator.class);
+
         /*
          *   Avoiding synchronization but still need some time for last test to finish.
          *   Was seeing the final print before the last logger 1 out of 3 or 4 times.
