@@ -62,11 +62,7 @@ public class RunValidator {
          *   Avoiding synchronization but still need some time for last test to finish.
          *   Was seeing the final print before the last logger 1 out of 3 or 4 times.
         */
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitXMilliseconds(5000);
 
         printResults(result);
 
@@ -85,6 +81,14 @@ public class RunValidator {
             for (Failure failure : result.getFailures()) {
                 System.out.println(failure.getMessage());
             }
+        }
+    }
+
+    private static void waitXMilliseconds(int seconds) {
+        try {
+            Thread.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
