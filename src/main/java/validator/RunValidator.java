@@ -68,6 +68,16 @@ public class RunValidator {
             e.printStackTrace();
         }
 
+        printResults(result);
+
+        try {
+            writer.close();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void printResults(Result result) {
         /* Print results */
         System.out.println("Tests finished.");
         System.out.println("Failure Count: " + result.getFailureCount());
@@ -75,12 +85,6 @@ public class RunValidator {
             for (Failure failure : result.getFailures()) {
                 System.out.println(failure.getMessage());
             }
-        }
-
-        try {
-            writer.close();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
         }
     }
 }
