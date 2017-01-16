@@ -20,29 +20,10 @@ public class RunValidator {
     public static void main (String[] args) {
 
         /* Parse command line */
-        if (args.length == 1) {
-            if (args[0].equals("-h") || args[0].equals("--help")) {
-                System.out.println("Please enter the path for the test data and optionally the path where the tests" +
-                        "should output the logs.");
-                System.exit(0);
-            } else {
-                testDataPath = args[0];
-                logPath = "logs.xml";
-            }
-        } else if (args.length == 2) {
-            testDataPath = args[0];
-            logPath = args[1];
-        } else {
-            System.out.println("Invalid number of arguments. 1 or 2 only.");
-            System.exit(0);
-        }
+        parseCommandLine(args);
 
         /* Delete previous log file */
-        try {
-            Files.deleteIfExists(Paths.get(logPath));
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        deletePreviousLogFile(logPath);
 
         /* Create log file */
         PrintStream writer = createWriter(logPath);
@@ -60,10 +41,38 @@ public class RunValidator {
 
         printResults(result);
 
+        /* Close writer */
         try {
             writer.close();
         } catch (NullPointerException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void deletePreviousLogFile(String logPath) {
+        try {
+            Files.deleteIfExists(Paths.get(logPath));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void parseCommandLine(String[] args) {
+        if (args.length == 1) {
+            if (args[0].equals("-h") || args[0].equals("--help")) {
+                System.out.println("Please enter the path for the test data and optionally the path where the tests" +
+                        "should output the logs.");
+                System.exit(0);
+            } else {
+                testDataPath = args[0];
+                logPath = "logs.xml";
+            }
+        } else if (args.length == 2) {
+            testDataPath = args[0];
+            logPath = args[1];
+        } else {
+            System.out.println("Invalid number of arguments. 1 or 2 only.");
+            System.exit(0);
         }
     }
 
