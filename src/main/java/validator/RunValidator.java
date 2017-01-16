@@ -45,13 +45,7 @@ public class RunValidator {
         }
 
         /* Create log file */
-        PrintStream writer;
-        try {
-           writer = new PrintStream(new FileOutputStream(logPath, false));
-        } catch (IOException e) {
-            e.printStackTrace();
-            writer = null;
-        }
+        PrintStream writer = createWriter(logPath);
 
         /* Run tests */
         JUnitCore core = new JUnitCore();
@@ -71,6 +65,18 @@ public class RunValidator {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+    }
+
+    private static PrintStream createWriter(String logPath) {
+        PrintStream writer;
+        try {
+            writer = new PrintStream(new FileOutputStream(logPath, false));
+        } catch (IOException e) {
+            e.printStackTrace();
+            writer = null;
+            System.exit(0);
+        }
+        return writer;
     }
 
     private static void printResults(Result result) {
