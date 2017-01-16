@@ -49,7 +49,7 @@ public class RunValidator {
         }
     }
 
-    private static void deletePreviousLogFile(String logPath) {
+    protected static void deletePreviousLogFile(String logPath) {
         try {
             Files.deleteIfExists(Paths.get(logPath));
         } catch (Exception e){
@@ -57,7 +57,7 @@ public class RunValidator {
         }
     }
 
-    private static void parseCommandLine(String[] args) {
+    protected static void parseCommandLine(String[] args) {
         if (args.length == 1) {
             if (args[0].equals("-h") || args[0].equals("--help")) {
                 System.out.println("Please enter the path for the test data and optionally the path where the tests" +
@@ -76,7 +76,7 @@ public class RunValidator {
         }
     }
 
-    private static PrintStream createWriter(String logPath) {
+    protected static PrintStream createWriter(String logPath) {
         PrintStream writer;
         try {
             writer = new PrintStream(new FileOutputStream(logPath, false));
@@ -88,7 +88,7 @@ public class RunValidator {
         return writer;
     }
 
-    private static void printResults(Result result) {
+    protected static void printResults(Result result) {
         /* Print results */
         System.out.println("Tests finished.");
         System.out.println("Failure Count: " + result.getFailureCount());
@@ -99,7 +99,7 @@ public class RunValidator {
         }
     }
 
-    private static void waitXMilliseconds(int seconds) {
+    protected static void waitXMilliseconds(int seconds) {
         try {
             Thread.sleep(seconds);
         } catch (InterruptedException e) {
