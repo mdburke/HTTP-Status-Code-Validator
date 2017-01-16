@@ -1,8 +1,7 @@
-package unit;
+package validator;
 
 import org.junit.Assert;
 import org.junit.Test;
-import validator.UrlList;
 
 import java.util.ArrayList;
 import java.util.List;
