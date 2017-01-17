@@ -26,7 +26,7 @@ public class RunValidator {
         deletePreviousLogFile(logPath);
 
         /* Create log file */
-        PrintStream writer = createWriter(logPath);
+        PrintStream writer = createFile(logPath);
 
         /* Run tests */
         JUnitCore core = new JUnitCore();
@@ -84,7 +84,7 @@ public class RunValidator {
         }
     }
 
-    protected static PrintStream createWriter(String logPath) {
+    protected static PrintStream createFile(String logPath) {
         PrintStream writer;
         try {
             writer = new PrintStream(new FileOutputStream(logPath, false));

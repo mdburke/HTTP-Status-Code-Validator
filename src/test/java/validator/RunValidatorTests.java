@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
@@ -88,5 +89,31 @@ public class RunValidatorTests {
 
         Assert.assertFalse("testDataPath.csv".equals(RunValidator.getTestDataPath()));
         Assert.assertFalse("logPath.xml".equals(RunValidator.getLogPath()));
+    }
+
+    @Test
+    public void testCreateFile() {
+        RunValidator.createFile("testCreateFile.xml");
+
+        Assert.assertTrue(Files.exists(Paths.get("testCreateFile.xml")));
+
+        try {
+            Files.deleteIfExists(Paths.get("testCreateFile.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testNegativeCreateFile() {
+        RunValidator.createFile("testCreateFile.xml");
+
+        Assert.assertFalse(Files.exists(Paths.get("testCreateFfile.xml")));
+
+        try {
+            Files.deleteIfExists(Paths.get("testCreateFile.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
