@@ -49,6 +49,14 @@ public class RunValidator {
         }
     }
 
+    public static String getTestDataPath() {
+        return testDataPath;
+    }
+
+    public static String getLogPath() {
+        return logPath;
+    }
+
     protected static void deletePreviousLogFile(String logPath) {
         try {
             Files.deleteIfExists(Paths.get(logPath));

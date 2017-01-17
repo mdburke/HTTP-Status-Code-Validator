@@ -34,7 +34,7 @@ public class RunValidatorTests {
     }
 
     @Test
-    public void testFailDeletePreviousLogFile() {
+    public void testNegativeDeletePreviousLogFile() {
         /* Create test file */
         Path path = Paths.get("testFile.txt");
 
@@ -55,5 +55,38 @@ public class RunValidatorTests {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testParseCommandLineOneArg() {
+
+        RunValidator.parseCommandLine(new String[] {"testDataPath.csv"});
+
+        Assert.assertEquals(RunValidator.getTestDataPath(), "testDataPath.csv");
+        Assert.assertEquals(RunValidator.getLogPath(), "logs.xml");
+    }
+
+    @Test
+    public void testNegativeParseCommandLineOneArg() {
+        RunValidator.parseCommandLine(new String[] {"NegativeTestDataPath.csv"});
+
+        Assert.assertFalse("testDataPath.csv".equals(RunValidator.getTestDataPath()));
+        Assert.assertFalse("fakePath.xml".equals(RunValidator.getLogPath()));
+    }
+
+    @Test
+    public void testParseCommandLineTwoArgs() {
+        RunValidator.parseCommandLine(new String[] {"testDataPath.csv", "logPath.xml"});
+
+        Assert.assertEquals(RunValidator.getTestDataPath(), "testDataPath.csv");
+        Assert.assertEquals(RunValidator.getLogPath(), "logPath.xml");
+    }
+
+    @Test
+    public void testNegativeParseCommandLineTwoArgs() {
+        RunValidator.parseCommandLine(new String[] {"NegativeTestDataPath.csv", "fakePath.xml"});
+
+        Assert.assertFalse("testDataPath.csv".equals(RunValidator.getTestDataPath()));
+        Assert.assertFalse("logPath.xml".equals(RunValidator.getLogPath()));
     }
 }
