@@ -1,15 +1,11 @@
-package unit;
+package validator;
 
 import org.junit.Assert;
 import org.junit.Test;
-import validator.StatusCodeValidatorSingle;
-import validator.UrlList;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
 
-public class ValidatorUnitTests {
+public class StatusCodeValidatorSingleUnitTests {
     @Test
     public void test200StatusCode() {
         StatusCodeValidatorSingle validator = new StatusCodeValidatorSingle("http://www.pixotech.com");
@@ -34,18 +30,5 @@ public class ValidatorUnitTests {
         }
     }
 
-    @Test
-    public void testCreateList() {
-        UrlList urlList = new UrlList("UnitTestUrls.csv");
-        List<String> correctList = new ArrayList<>();
-        String baseString = "http://ahs.uic.i.pixotech.com";
 
-        correctList.add(baseString + "/news");
-        correctList.add(baseString + "/events");
-        correctList.add(baseString + "/physical-therapy");
-        correctList.add(baseString + "/physical-therapy/events");
-
-        Assert.assertArrayEquals(correctList.toArray(), urlList.getUrlList().toArray());
-        System.out.println(urlList.getUrlList());
-    }
 }

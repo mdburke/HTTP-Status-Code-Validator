@@ -35,8 +35,8 @@ public class Validator {
     }
 
     /*
-    *  This does the magic parameterization. To customize with other parameters, add items to the object in the
-    *  result.add line.
+    *  This does the magic parameterization. To customize with other parameters,
+    *  add items to the object in the result.add line.
     *  Courtesy of http://meri-stuff.blogspot.com/2014/08/junit-dynamic-tests-generation.html
     */
     @Parameterized.Parameters()
