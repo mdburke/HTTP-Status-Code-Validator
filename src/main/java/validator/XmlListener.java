@@ -41,8 +41,7 @@ public class XmlListener extends RunListener {
 
     @Override
     public void testFailure(Failure failure) {
-        getWriter().println("<failure message=\"" + failure.getMessage() +
-                            "\"> Assertion Failed </failure>");
+        getWriter().println("Assertion Failed");
     }
 
     @Override
@@ -54,7 +53,7 @@ public class XmlListener extends RunListener {
      * Internal methods
      */
 
-    private PrintStream getWriter() {
+    private synchronized PrintStream getWriter() {
         return writer;
     }
 
