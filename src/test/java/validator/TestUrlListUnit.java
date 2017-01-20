@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UrlListUnitTests {
+public class TestUrlListUnit {
     @Test
     public void testCreateList() {
         UrlList urlList = new UrlList("UnitTestUrls.csv");

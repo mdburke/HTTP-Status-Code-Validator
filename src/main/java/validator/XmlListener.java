@@ -1,6 +1,7 @@
 package validator;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.runner.Description;
@@ -14,6 +15,13 @@ import org.junit.runner.notification.RunListener;
 public class XmlListener extends RunListener {
 
     private final PrintStream writer;
+    private double time;
+    private int numTests;
+    private int numErrors;
+    private int numSkipped;
+    private int numFailures;
+    private ArrayList<String> body = new ArrayList<>();
+    private String currentTestCase;
 
     public XmlListener(PrintStream writer) {
         this.writer = writer;
@@ -21,32 +29,40 @@ public class XmlListener extends RunListener {
 
     @Override
     public void testRunStarted(Description description) {
-        printHeader();
     }
 
     @Override
     public void testRunFinished(Result result) {
+        printHeader(result);
+        printBody();
         printFooter();
     }
 
     @Override
     public void testStarted(Description description) {
-        getWriter().println("<testcase name=\"" + description.toString() + "\">");
+        numTests += 1;
+        currentTestCase = "<testcase name=\"" + description.toString() + "\"" +
+                          " classname=\"" + description.getClassName() + "\"" +
+                          ">";
     }
 
     @Override
     public void testFinished(Description description) {
-        getWriter().println("</testcase>");
+        currentTestCase += "</testcase>";
+        body.add(currentTestCase);
+        currentTestCase = "";
     }
 
     @Override
     public void testFailure(Failure failure) {
-        getWriter().println("Assertion Failed");
+        numFailures += 1;
+        currentTestCase += "<failure message=\"Assertion failed\"></failure>";
     }
 
     @Override
     public void testIgnored(Description description) {
-        getWriter().println("<skipped />");
+        numSkipped += 1;
+        currentTestCase += "</skipped>";
     }
 
     /*
@@ -57,10 +73,20 @@ public class XmlListener extends RunListener {
         return writer;
     }
 
-    protected void printHeader() {
+    protected void printBody() {
+        for (String line : body) {
+            getWriter().println(line);
+        }
+    }
+
+    protected void printHeader(Result result) {
         getWriter().println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-        getWriter().println("<testsuites>");
-        getWriter().println("<testsuite>");
+        getWriter().println("<testsuite name=\"validator.TestRunValidator\"" +
+                " time=\"" + result.getRunTime() + "\"" +
+                " tests=\"" + result.getRunCount() + "\"" +
+                " skipped=\"" + result.getIgnoreCount() + "\"" +
+                " failures=\"" + result.getFailureCount() + "\"" +
+                ">");
     }
 
     protected void printFailure(Failure each, String prefix) {
@@ -70,6 +96,5 @@ public class XmlListener extends RunListener {
 
     protected void printFooter() {
         getWriter().println("</testsuite>");
-        getWriter().println("</testsuites>");
     }
 }

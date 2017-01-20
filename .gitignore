@@ -16,3 +16,4 @@ target/generated-test-sources/
 target/test-classes/
 target
 logs.xml
+phantomjsdriver.log

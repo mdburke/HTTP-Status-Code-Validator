@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-public class StatusCodeValidatorSingleUnitTests {
+public class TestStatusCodeValidatorSingleUnit {
     @Test
     public void test200StatusCode() {
         StatusCodeValidatorSingle validator = new StatusCodeValidatorSingle("http://www.pixotech.com");

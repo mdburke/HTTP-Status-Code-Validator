@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 
-public class RunValidatorTests {
+public class TestRunValidator {
     @Test
     public void testDeletePreviousLogFile() {
         /* Create test file */
